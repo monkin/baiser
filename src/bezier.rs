@@ -419,4 +419,57 @@ mod test {
         assert_eq!(curve.value_at(0.5), 2.875);
         assert_eq!(curve.value_at(1.0), 4.0);
     }
+
+    #[derive(Clone, PartialEq, Debug)]
+    struct Point {
+        x: f64,
+        y: f64,
+    }
+    impl CurvePoint<f64> for Point {
+        fn add(&self, other: &Self) -> Self {
+            Point {
+                x: self.x + other.x,
+                y: self.y + other.y,
+            }
+        }
+
+        fn sub(&self, other: &Self) -> Self {
+            Point {
+                x: self.x - other.x,
+                y: self.y - other.y,
+            }
+        }
+
+        fn multiply(&self, other: &Self) -> Self {
+            Point {
+                x: self.x * other.x,
+                y: self.y * other.y,
+            }
+        }
+
+        fn scale(&self, s: f64) -> Self {
+            Point {
+                x: self.x * s,
+                y: self.y * s,
+            }
+        }
+    }
+
+    #[test]
+    fn cubic_bezier_2d() {
+        let curve = Bezier3::new(
+            Point { x: 0.0, y: 0.0 },
+            Point { x: 0.0, y: 1.0 },
+            Point { x: 2.0, y: -1.0 },
+            Point { x: 2.0, y: 0.0 },
+        );
+
+        assert_eq!(curve.value_at(0.0), Point { x: 0.0, y: 0.0 });
+        assert_eq!(curve.value_at(0.5), Point { x: 1.0, y: 0.0 });
+        assert_eq!(curve.value_at(1.0), Point { x: 2.0, y: 0.0 });
+
+        assert_eq!(curve.tangent_at(0.0), Point { x: 0.0, y: 3.0 });
+        assert_eq!(curve.tangent_at(0.5), Point { x: 3.0, y: -1.5 });
+        assert_eq!(curve.tangent_at(1.0), Point { x: 0.0, y: 3.0 });
+    }
 }
