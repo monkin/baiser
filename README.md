@@ -1,6 +1,6 @@
 # Baiser
 
-Baiser is a Rust library designed to work with curves, providing tools for creating and manipulating them with ease. It offers a variety of curve types, including Bezier curves of different orders, and utilities for composing curves, calculating distances, and ensuring smooth transitions. One of the library's key features is the ability to adjust curves to have linear speed, making it particularly useful for animations, simulations, and any application where consistent movement along a curve is required.
+Baiser is a Rust library designed to work with curves, providing tools for creating and manipulating them with ease. It offers a variety of curve types, including Bezier curves of different orders, and utilities for composing curves. One of the library's key features is the ability to adjust curves to have linear speed, making it particularly useful for animations, and any application where consistent movement along a curve is required.
 
 ## Features
 
