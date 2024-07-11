@@ -2,6 +2,11 @@
 name = "baiser"
 version = "0.1.0"
 edition = "2021"
+authors = ["Andrei Monkin <monkin.andrey@gmail.com>"]
+description = "Curves manipulation library"
+keywords = ['curve', 'bezier', 'smooth', 'geometry']
+license = "MIT"
+repository = "https://github.com/monkin/baiser"
 
 [dependencies]
 num-traits = ">=0.2.19"
