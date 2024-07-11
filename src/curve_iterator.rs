@@ -35,7 +35,7 @@ impl<F: Float, P: CurvePoint<F>, C: Curve<F, P>> CurveIterator<F, P, C> {
             steps_count: F::from(steps_count).unwrap(),
             include_last,
             i: F::zero(),
-            phantom_data: PhantomData::default(),
+            phantom_data: Default::default(),
         }
     }
 }

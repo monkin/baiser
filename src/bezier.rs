@@ -14,7 +14,7 @@ impl<F: Float, P: CurvePoint<F>> Bezier0<F, P> {
     pub fn new(point: P) -> Self {
         Self {
             point,
-            phantom_data: PhantomData::default(),
+            phantom_data: Default::default(),
         }
     }
 }
@@ -32,7 +32,7 @@ impl<F: Float, P: CurvePoint<F>> Bezier1<F, P> {
         Self {
             p0,
             p1,
-            phantom_data: PhantomData::default(),
+            phantom_data: Default::default(),
         }
     }
 }
@@ -52,7 +52,7 @@ impl<F: Float, P: CurvePoint<F>> Bezier2<F, P> {
             p0,
             p1,
             p2,
-            phantom_data: PhantomData::default(),
+            phantom_data: Default::default(),
         }
     }
 }
@@ -74,7 +74,7 @@ impl<F: Float, P: CurvePoint<F>> Bezier3<F, P> {
             p1,
             p2,
             p3,
-            phantom_data: PhantomData::default(),
+            phantom_data: Default::default(),
         }
     }
 }
@@ -267,8 +267,8 @@ impl<F: Float, P: CurvePoint<F>> Curve<F, P> for Bezier2<F, P> {
         } else if (max - min) / max < precision {
             (min + max) * half
         } else {
-            let m01 = p0.add(&p1).scale(half);
-            let m12 = p1.add(&p2).scale(half);
+            let m01 = p0.add(p1).scale(half);
+            let m12 = p1.add(p2).scale(half);
             let m = m01.add(&m12).scale(half);
 
             let b1 = Bezier2::new(p0.clone(), m01, m.clone());
@@ -310,9 +310,9 @@ impl<F: Float, P: CurvePoint<F>> Curve<F, P> for Bezier3<F, P> {
         let nt = F::one() - t;
         let nt2 = nt * nt;
 
-        let v1 = p1.sub(&p0).scale(three * nt2);
-        let v2 = p2.sub(&p1).scale(six * nt * t);
-        let v3 = p3.sub(&p2).scale(three * t2);
+        let v1 = p1.sub(p0).scale(three * nt2);
+        let v2 = p2.sub(p1).scale(six * nt * t);
+        let v3 = p3.sub(p2).scale(three * t2);
 
         v1.add(&v2).add(&v3)
     }
@@ -344,9 +344,9 @@ impl<F: Float, P: CurvePoint<F>> Curve<F, P> for Bezier3<F, P> {
         } else if (max - min) / max < precision {
             (min + max) * half
         } else {
-            let m01 = p0.add(&p1).scale(half);
-            let m12 = p1.add(&p2).scale(half);
-            let m23 = p2.add(&p3).scale(half);
+            let m01 = p0.add(p1).scale(half);
+            let m12 = p1.add(p2).scale(half);
+            let m23 = p2.add(p3).scale(half);
             let m012 = m01.add(&m12).scale(half);
             let m123 = m12.add(&m23).scale(half);
             let m = m012.add(&m123).scale(half);

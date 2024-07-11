@@ -7,10 +7,6 @@ pub(crate) struct SmoothArray<F: Float> {
 }
 
 impl<F: Float> SmoothArray<F> {
-    pub(crate) fn new(data: Vec<F>) -> Self {
-        Self { data }
-    }
-
     pub(crate) fn with_steps_count(steps_count: usize) -> Self {
         Self {
             data: vec![F::zero(); steps_count],
@@ -28,7 +24,7 @@ impl<F: Float> SmoothArray<F> {
 
         let dl = (F::one() + F::one()) / self.len();
 
-        return (v2 - v1) / dl;
+        (v2 - v1) / dl
     }
 
     pub(crate) fn line(&mut self, (i1, v1): (F, F), (i2, v2): (F, F)) {

@@ -1,5 +1,5 @@
 use crate::bezier::Bezier;
-use crate::{Bezier1, Bezier2, Bezier3, Curve, CurvePoint};
+use crate::{Bezier1, Bezier2, Bezier3, Curve, CurvePoint, Distance};
 use num_traits::Float;
 use std::fmt::Debug;
 use std::ops::Deref;
@@ -115,7 +115,7 @@ impl<F: Float, P: CurvePoint<F>> Curve<F, P> for ComposedCurve<F, P> {
 
     fn estimate_length(&self, precision: F) -> F
     where
-        P: Float,
+        P: Distance<F>,
     {
         self.curves.iter().fold(F::zero(), |acc, curve| {
             acc + curve.estimate_length(precision)
