@@ -383,3 +383,40 @@ impl<F: Float, P: CurvePoint<F>> Curve<F, P> for Bezier<F, P> {
         for_every_level!(self, c, { c.estimate_length(precision) })
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn bezier_0() {
+        let curve = Bezier0::new(2.0);
+        assert_eq!(curve.value_at(0.0), 2.0);
+        assert_eq!(curve.value_at(0.5), 2.0);
+        assert_eq!(curve.value_at(1.0), 2.0);
+    }
+
+    #[test]
+    fn bezier_1() {
+        let curve = Bezier1::new(1.0, 3.0);
+        assert_eq!(curve.value_at(0.0), 1.0);
+        assert_eq!(curve.value_at(0.5), 2.0);
+        assert_eq!(curve.value_at(1.0), 3.0);
+    }
+
+    #[test]
+    fn bezier_2() {
+        let curve = Bezier2::new(1.0, 3.0, 2.0);
+        assert_eq!(curve.value_at(0.0), 1.0);
+        assert_eq!(curve.value_at(0.5), 2.25);
+        assert_eq!(curve.value_at(1.0), 2.0);
+    }
+
+    #[test]
+    fn bezier_3() {
+        let curve = Bezier3::new(1.0, 4.0, 2.0, 4.0);
+        assert_eq!(curve.value_at(0.0), 1.0);
+        assert_eq!(curve.value_at(0.5), 2.875);
+        assert_eq!(curve.value_at(1.0), 4.0);
+    }
+}
