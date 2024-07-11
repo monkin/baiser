@@ -1,7 +1,7 @@
+use crate::linear_speed::LinearSpeed;
 use crate::{Curve, CurvePoint, Distance};
 use num_traits::Float;
 use std::fmt::Debug;
-use crate::linear_speed::LinearSpeed;
 
 /// Single point
 #[derive(Clone, PartialEq)]
@@ -203,7 +203,7 @@ impl<F: Float, P: CurvePoint<F>> Curve<F, P> for Bezier2<F, P> {
         if max == F::zero() {
             F::zero()
         } else if (max - min) / max < precision {
-            (min + max) * half;
+            (min + max) * half
         } else {
             let m01 = p1.add(&p2).scale(half);
             let m12 = p2.add(&p3).scale(half);

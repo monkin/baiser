@@ -7,13 +7,13 @@ pub(crate) struct SmoothArray<F: Float> {
 }
 
 impl<F: Float> SmoothArray<F> {
-    pub(crate) fn new(data: Vec<f32>) -> Self {
+    pub(crate) fn new(data: Vec<F>) -> Self {
         Self { data }
     }
 
     pub(crate) fn with_steps_count(steps_count: usize) -> Self {
         Self {
-            data: vec![0.0; steps_count],
+            data: vec![F::zero(); steps_count],
         }
     }
 
@@ -41,7 +41,7 @@ impl<F: Float> SmoothArray<F> {
         while i < max_i {
             let f = (i - i1) * idi;
             let v = v1 * (F::one() - f) + v2 * f;
-            self.data[i.into().unwrap()] = v;
+            self.data[i.to_usize().unwrap()] = v;
             i = i + F::one();
         }
     }
