@@ -44,8 +44,9 @@ let composed_curve = Curve::composed(p0)
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit pull requests or open issues to discuss potential improvements or
-features.
+1. Fork it (https://github.com/monkin/baiser)
+2. Implement your feature or bug fix in a feature branch
+3. Create a new Pull Request
 
 ## License
 
