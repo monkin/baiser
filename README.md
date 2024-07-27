@@ -50,4 +50,4 @@ let composed_curve = Curve::composed(p0)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE.md) file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE.md) file for details.
