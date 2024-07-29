@@ -1,17 +1,17 @@
-use num_traits::Float;
+use crate::Point;
 
-pub trait Distance<F: Float> {
-    fn distance(&self, other: &Self) -> F;
+pub trait Distance: Point {
+    fn distance(&self, other: &Self) -> Self::Scalar;
 }
 
-impl<F: Float> Distance<F> for f32 {
-    fn distance(&self, other: &Self) -> F {
-        F::from((self - other).abs()).unwrap_or(F::infinity())
+impl Distance for f32 {
+    fn distance(&self, other: &Self) -> Self::Scalar {
+        (self - other).abs()
     }
 }
 
-impl<F: Float> Distance<F> for f64 {
-    fn distance(&self, other: &Self) -> F {
-        F::from((self - other).abs()).unwrap_or(F::infinity())
+impl Distance for f64 {
+    fn distance(&self, other: &Self) -> Self::Scalar {
+        (self - other).abs()
     }
 }
