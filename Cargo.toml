@@ -9,4 +9,7 @@ license = "MIT"
 repository = "https://github.com/monkin/baiser"
 
 [dependencies]
-num-traits = ">=0.2.19"
+num-traits = "0.2"
+
+[dev-dependencies]
+approx = "0.5"
